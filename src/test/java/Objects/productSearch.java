@@ -13,7 +13,7 @@ public class productSearch {
     public void searchFor(String text) {
         driver.findElement(searchBox).sendKeys(text);
     }
-    public void searchResult(String text) {
-        driver.findElement(searchResult).sendKeys(text);
+    public void searchResult() {
+        driver.findElement(searchResult).click();
     }
 }
