@@ -26,10 +26,10 @@ WebDriver driver;
         page.searchFor("car accessories");
     }
 
-//    @AfterTest
-//    public void afterTest() {
-//        driver.quit();
-//    }
+    @AfterTest
+    public void afterTest() {
+        driver.quit();
+    }
 
 
 }
