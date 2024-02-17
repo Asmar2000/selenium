@@ -1,8 +1,10 @@
 package objects;
 
+import com.sun.source.tree.AssertTree;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -18,15 +20,21 @@ public class todayDeals {
         todayDeals.click();
     }
     public void checkCategories() {
-        List<WebElement> check = driver.findElements(By.xpath("// li [@class=\"CheckboxFilter-module__gridFilterOption_hdG5xZdR2ZvDkQKkl_d49\"]"));
-        check.get(8).click(); //check Men's fashion
-        check.get(9).click(); //check Women's fashion
-        check.get(11).click(); //check Electronics
-
+        List<WebElement> checkbox = driver.findElements(By.xpath("// input [@data-csa-c-type=\"uxElement\"]"));
+        WebElement menCategory =  checkbox.get(8);
+        menCategory.click(); //check Men's fashion
+        WebElement womenCategory = checkbox.get(9);
+        womenCategory.click(); //check Women's fashion
+        WebElement electronics = checkbox.get(11);
+        electronics.click(); //check Electronics
+        Assert.assertTrue(menCategory.isSelected(), "Men's fashion checkbox is not checked");
+        Assert.assertTrue(womenCategory.isSelected(), "Women's fashion checkbox is not checked");
+        Assert.assertTrue(electronics.isSelected(), "Electronics checkbox is not checked");
     }
     public void checkDiscount() {
-        List<WebElement> discount = driver.findElements(By.xpath("// li [@class=\"LinkFilterOption-module__linkFilterOptionListElement_AzC4LFMfeFF1CkwveJM01\"]"));
-        discount.get(16).click(); //check 10% off
+        driver.findElement(By.linkText("خصم 10% أو أكثر")).click(); //check 10% off
+        WebElement assertDiscount = driver.findElement(By.xpath("// a [@data-csa-c-element-id=\"filter-discount-10-\"]"));
+        Assert.assertTrue(assertDiscount.isDisplayed(), "Discount filter is not working");
     }
     public void paginateTo(int pages){
         WebElement paginate = driver.findElement(By.xpath("// li [@class=\"a-last\"]"));
@@ -42,5 +50,14 @@ public class todayDeals {
             // search again for the element after loading
             paginate = driver.findElement(By.xpath("//li[@class='a-last']"));
         }
+        Assert.assertTrue(paginate.isDisplayed(), "Pagination is not working");
+    }
+    public void selectProduct() {
+        List<WebElement> categories = driver.findElements(By.xpath("// div [@class=\"DealGridItem-module__dealItemContent_1vFddcq1F8pUxM8dd9FW32\"]"));
+        WebElement firstCategory = categories.getFirst();
+        firstCategory.click();
+        List<WebElement> product = driver.findElements(By.xpath("// div [@class=\"a-section a-spacing-base a-text-center octopus-dlp-image-section\"]"));
+        WebElement firstProduct = product.getFirst();
+        firstProduct.click();
     }
 }
