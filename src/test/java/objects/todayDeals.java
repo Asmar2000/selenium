@@ -59,10 +59,10 @@ public class todayDeals {
     }
     public void selectProduct() {
         List<WebElement> categories = driver.findElements(By.xpath("// div [@class=\"DealGridItem-module__dealItemContent_1vFddcq1F8pUxM8dd9FW32\"]"));
-        WebElement firstCategory = categories.getFirst();
+        WebElement firstCategory = categories.get(0);
         firstCategory.click();
         List<WebElement> product = driver.findElements(By.xpath("// div [@class=\"a-section a-spacing-base a-text-center octopus-dlp-image-section\"]"));
-        WebElement firstProduct = product.getFirst();
+        WebElement firstProduct = product.get(0);
         firstProduct.click();
     }
 }

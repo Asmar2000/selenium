@@ -20,7 +20,7 @@ public class productSearch {
     }
     public void selectItem() {
         List<WebElement> searchResults = driver.findElements(By.xpath("//div[@data-component-type='s-search-result']"));
-        WebElement firstResult = searchResults.getFirst(); //get the first product
+        WebElement firstResult = searchResults.get(0); //get the first product
         firstResult.click(); //click on the first product as mentioned in the task
     }
     public void productImage() {
