@@ -1,6 +1,5 @@
 package objects;
 
-import com.sun.source.tree.AssertTree;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,12 +20,18 @@ public class todayDeals {
     }
     public void checkCategories() {
         List<WebElement> checkbox = driver.findElements(By.xpath("// input [@data-csa-c-type=\"uxElement\"]"));
+        WebElement boysCategory = checkbox.get(6);
+        boysCategory.click(); //check boys fashion
+        WebElement girlsCategory = checkbox.get(7);
+        girlsCategory.click(); //check girls fashion
         WebElement menCategory =  checkbox.get(8);
         menCategory.click(); //check Men's fashion
         WebElement womenCategory = checkbox.get(9);
         womenCategory.click(); //check Women's fashion
         WebElement electronics = checkbox.get(11);
         electronics.click(); //check Electronics
+        Assert.assertTrue(boysCategory.isSelected(), "Boys fashion checkbox is not checked");
+        Assert.assertTrue(girlsCategory.isSelected(), "Girls fashion checkbox is not checked");
         Assert.assertTrue(menCategory.isSelected(), "Men's fashion checkbox is not checked");
         Assert.assertTrue(womenCategory.isSelected(), "Women's fashion checkbox is not checked");
         Assert.assertTrue(electronics.isSelected(), "Electronics checkbox is not checked");
